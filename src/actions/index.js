@@ -5,6 +5,14 @@ export const addGig = (gig) => {
     }
 }
 
+export const newGigFirstData = (data) => {
+  return {
+    type: 'NEW_GIG_FIRST_DATA',
+    newGigFirstData : data
+  }
+}
+
+
 export const setGigs = (gigs) => {
     return {
       type: 'SET_GIGS',

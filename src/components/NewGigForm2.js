@@ -3,24 +3,57 @@ import { useForm } from "react-hook-form";
 import { withRouter } from "react-router-dom";
 import { connect } from 'react-redux'
 import { addGig } from '../actions/index'
+import { useAuthState } from 'react-firebase-hooks/auth';
+import * as firebase from "firebase/app";
+import "firebase/auth";
+import "firebase/firestore";
 
+
+
+function GetCollections(){
+  return(
+    null
+  )
+
+}
 
 
 const NewGigForm2 = (props) => {
+  const auth = firebase.auth();
+  const [user] = useAuthState(auth);
 
-  const { register, handleSubmit, watch, errors } = useForm();
+  const { handleSubmit, register } = useForm();
+  
   const onSubmit = data => {
-    console.log(data);
+    const firestore = firebase.firestore();
+    const newGigObj = {
+      user : user.email,
+      date : props.gigData.date, 
+      time : props.gigData.time, 
+      description : props.gigData.description, 
+      instrument : data.instrument, 
+      amp : data.amp, 
+      pedal: data.pedal
+      // collection : data.collection
+    }
+
+    firestore.collection("gigs").add({
+      newGigObj
+    })
     props.history.push("/");
   }
 
     return (
-        <div className='component-container'>
+      <div className='component-container'>
+      <GetCollections/>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <button> add gear </button>
                 <button> add another collection </button>
-
-                <select name='add a collection'>
+                <input type='text' name='instrument' placeholder='instrument' ref={register}></input>
+                <input type='text' name='amp' placeholder='amp' ref={register}></input>
+                <input type='text' name='pedal' placeholder='pedal' ref={register}></input>
+                <label>Add from your Collections?</label>
+                <select name='user-collections' ref={register}>
                     <option> user collection1</option>
                     <option> pedalboard stuff</option>
                     <option> dog things </option>
@@ -34,10 +67,10 @@ const NewGigForm2 = (props) => {
 }
 
 const mapStateToProps = (state) => {
-    return {
-        
-    }
-  }
+  return {
+      gigData: state.newGigFirstData,
+  } 
+}
   
 const mapDispatchToProps = {
     addGig

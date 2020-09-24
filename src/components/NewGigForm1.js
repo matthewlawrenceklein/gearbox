@@ -2,14 +2,16 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
+import { newGigFirstData } from '../actions/index'
 
 
 
 const NewGigForm1 = (props) => {
-  const { register, handleSubmit, watch, errors } = useForm();
+  const { register, handleSubmit, errors } = useForm();
 
   const onSubmit = data => {
     console.log(data);
+    props.newGigFirstData(data)
     props.history.push("./newgigform2");
   }
 
@@ -33,6 +35,6 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = {
-  
+  newGigFirstData
 }
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(NewGigForm1))

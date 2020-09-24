@@ -9,6 +9,7 @@ import Dash from './components/Dash'
 import { Route, Switch, withRouter } from "react-router-dom";
 import NewGigForm1 from './components/NewGigForm1'
 import NewGigForm2 from './components/NewGigForm2'
+import GigCard from './components/GigCard'
 import NewCollection from './components/NewCollection'
 
 
@@ -60,13 +61,13 @@ function GetGigs(){
     .get()
     .then(querySnapshot => {
         querySnapshot.forEach(doc => {
-            // doc.data() is never undefined for query doc snapshots
             userGigs.push(doc.data())
         });
+        // console.log(userGigs)
+        return userGigs.map(gig => {
+          console.log(gig)
+        })
     })
-    console.log(userGigs)
-     
-
   return(
     <h1>hi</h1>
   )
