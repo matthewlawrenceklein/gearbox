@@ -19,3 +19,10 @@ export const setGigs = (gigs) => {
       setGigs : gigs
     }
 }
+
+export const setUser = (user) => {
+  return {
+    type: 'SET_USER',
+    setUser : user
+  }
+}

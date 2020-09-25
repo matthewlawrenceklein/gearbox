@@ -9,8 +9,11 @@ import Dash from './components/Dash'
 import { Route, Switch, withRouter } from "react-router-dom";
 import NewGigForm1 from './components/NewGigForm1'
 import NewGigForm2 from './components/NewGigForm2'
-import GigCard from './components/GigCard'
 import NewCollection from './components/NewCollection'
+import { connect } from "react-redux";
+import { setUser } from './actions/index'
+import { setGigs } from './actions/index'
+
 
 
 
@@ -29,9 +32,6 @@ firebase.initializeApp(firebaseConfig);
 const firestore = firebase.firestore();
 const auth = firebase.auth();
 
-
-
-
 function SignIn() {
 
   const signInWithGoogle = () => {
@@ -47,34 +47,33 @@ function SignIn() {
 
 function SignOut() {
   return auth.currentUser && (
-    <div className='component-container'>
+    <div className=''>
       <button className="sign-out" onClick={() => auth.signOut()}>Sign Out</button>
     </div>
   )
 }
 
-function GetGigs(){
+const App = (props) => {
+
+  const [user] = useAuthState(auth);
+  props.setUser(user)
+  function GetGigs(){
     const [user] = useAuthState(auth);
     const userGigs = []
 
-    firestore.collection("gigs").where('user', '==', user.email)
+    firestore.collection("gigs").where('newGigObj.user', '==', user.email)
     .get()
     .then(querySnapshot => {
         querySnapshot.forEach(doc => {
             userGigs.push(doc.data())
         });
-        // console.log(userGigs)
-        return userGigs.map(gig => {
-          console.log(gig)
-        })
+        props.setGigs(userGigs)
+        
     })
   return(
-    <h1>hi</h1>
+    <h1></h1>
   )
 }
-
-function App() {
-  const [user] = useAuthState(auth);
 
   return (
     <div className="container">
@@ -99,4 +98,14 @@ function App() {
   );
 }
 
-export default withRouter(App);
+const mapStateToProps = (state) => {
+  return {
+  }
+}
+
+const mapDispatchToProps = {
+  setUser,
+  setGigs
+}
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));
