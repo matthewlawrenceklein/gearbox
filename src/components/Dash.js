@@ -8,12 +8,11 @@ import GigCard from './GigCard'
 
 class Dash extends Component {
    renderGigs = () => {
-       console.log(this.props.gigs)
        return this.props.gigs.map(gig => {
         return <GigCard 
-                date={gig.newGigObj.date}
-                time={gig.newGigObj.time}
-                description={gig.newGigObj.description}
+                date={gig.combinedGigObj.date}
+                time={gig.combinedGigObj.time}
+                description={gig.combinedGigObj.description}
                 />
        })
   }

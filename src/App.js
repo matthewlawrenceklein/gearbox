@@ -14,9 +14,6 @@ import { connect } from "react-redux";
 import { setUser } from './actions/index'
 import { setGigs } from './actions/index'
 
-
-
-
 const firebaseConfig = {
   apiKey: `${process.env.REACT_APP_FIREBASE_KEY}`,
   authDomain: "gearbox-c0d18.firebaseapp.com",
@@ -61,7 +58,7 @@ const App = (props) => {
     const [user] = useAuthState(auth);
     const userGigs = []
 
-    firestore.collection("gigs").where('newGigObj.user', '==', user.email)
+    firestore.collection("gigs").where('combinedGigObj.user', '==', user.email)
     .get()
     .then(querySnapshot => {
         querySnapshot.forEach(doc => {

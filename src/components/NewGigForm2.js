@@ -26,19 +26,20 @@ const NewGigForm2 = (props) => {
   
   const onSubmit = data => {
     const firestore = firebase.firestore();
-    const newGigObj = {
-      user : user.email,
-      date : props.gigData.date, 
-      time : props.gigData.time, 
-      description : props.gigData.description, 
-      instrument : data.instrument, 
-      amp : data.amp, 
-      pedal: data.pedal
-      // collection : data.collection
-    }
+    const combinedGigObj = Object.assign(data, props.gigData, {user : user.email} )
+    // const newGigObj = {
+    //   user : user.email,
+    //   date : props.gigData.date, 
+    //   time : props.gigData.time, 
+    //   description : props.gigData.description, 
+    //   instrument : data.instrument, 
+    //   amp : data.amp, 
+    //   pedal: data.pedal
+    //   // collection : data.collection
+    // }
 
     firestore.collection("gigs").add({
-      newGigObj
+      combinedGigObj
     })
     props.history.push("/");
   }

@@ -7,7 +7,7 @@ import { newGigFirstData } from '../actions/index'
 
 
 const NewGigForm1 = (props) => {
-  const { register, handleSubmit, errors } = useForm();
+  const { register, handleSubmit,  errors } = useForm();
 
   const onSubmit = data => {
     console.log(data);

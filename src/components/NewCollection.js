@@ -2,21 +2,31 @@ import React, { useState } from 'react';
 import { useForm } from "react-hook-form";
 import { withRouter } from "react-router-dom";
 import { connect } from 'react-redux'
+import { useAuthState } from 'react-firebase-hooks/auth';
+import * as firebase from "firebase/app";
+import "firebase/auth";
+import "firebase/firestore";
 
 const NewCollection = (props) => {
 
     const { register, handleSubmit, errors } = useForm();
     const [numFields, addField] = useState([])
+    const firestore = firebase.firestore();
+    const auth = firebase.auth();
+    const [user] = useAuthState(auth);
 
     const onSubmit = data => {
-        console.log(numFields)
-        console.log(data);
+        
+        const combinedCollection = Object.assign(data, {user : user.email})
+        firestore.collection("collections").add({
+            combinedCollection
+        })
         props.history.push("/");
     }
     const createUI = () => {
         return numFields.map((el, idx) =>{
            return (
-                <div>
+                <div key={idx}>
                     <input type='text' name={`collection-item-${idx}`}ref={register}></input>
                     <select ref={register} name={`select-${idx}`}>
                         <option> Instrument </option>
@@ -31,12 +41,10 @@ const NewCollection = (props) => {
         })
      }
    
-   
-
     return (
         <div className='component-container'>
+            <button onClick={() => addField([...numFields, 'el'])}> add gear to the collection</button>
             <form onSubmit={handleSubmit(onSubmit)}>
-                <button onClick={() => addField([...numFields, 'el'])}> add gear to the collection</button>
                 { createUI() }
                 <button type='submit'>create collection</button>
             </form>
