@@ -13,6 +13,7 @@ import NewCollection from './components/NewCollection'
 import { connect } from "react-redux";
 import { setUser } from './actions/index'
 import { setGigs } from './actions/index'
+import { setCollections } from './actions/index'
 
 const firebaseConfig = {
   apiKey: `${process.env.REACT_APP_FIREBASE_KEY}`,
@@ -57,6 +58,7 @@ const App = (props) => {
   function GetGigs(){
     const [user] = useAuthState(auth);
     const userGigs = []
+    const userCollections = []
 
     firestore.collection("gigs").where('combinedGigObj.user', '==', user.email)
     .get()
@@ -64,11 +66,19 @@ const App = (props) => {
         querySnapshot.forEach(doc => {
             userGigs.push(doc.data())
         });
-        props.setGigs(userGigs)
-        
+        props.setGigs(userGigs)  
     })
+    firestore.collection("collections").where('combinedCollection.user', '==', user.email)
+    .get()
+    .then(querySnapshot => {
+        querySnapshot.forEach(doc => {
+            userCollections.push(doc.data())
+        });
+        props.setCollections(userCollections)  
+    })
+
   return(
-    <h1></h1>
+    <h1>  </h1>
   )
 }
 
@@ -102,7 +112,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = {
   setUser,
-  setGigs
+  setGigs,
+  setCollections
 }
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));

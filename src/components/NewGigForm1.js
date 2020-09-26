@@ -10,7 +10,6 @@ const NewGigForm1 = (props) => {
   const { register, handleSubmit,  errors } = useForm();
 
   const onSubmit = data => {
-    console.log(data);
     props.newGigFirstData(data)
     props.history.push("./newgigform2");
   }

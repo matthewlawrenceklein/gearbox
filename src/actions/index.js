@@ -26,3 +26,17 @@ export const setUser = (user) => {
     setUser : user
   }
 }
+
+export const addCollection = (collection) => {
+  return {
+    type: 'ADD_COLLECTION',
+    addCollection : [...addCollection, collection]
+  }
+}
+
+export const setCollections = (collections) => {
+  return {
+    type: 'SET_COLLECTIONS',
+    setCollections : collections
+  }
+}

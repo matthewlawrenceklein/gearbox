@@ -3,13 +3,14 @@ import { useForm } from "react-hook-form";
 import { withRouter } from "react-router-dom";
 import { connect } from 'react-redux'
 import { useAuthState } from 'react-firebase-hooks/auth';
+import { addCollection } from '../actions/index'
 import * as firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/firestore";
 
 const NewCollection = (props) => {
 
-    const { register, handleSubmit, errors } = useForm();
+    const { register, handleSubmit } = useForm();
     const [numFields, addField] = useState([])
     const firestore = firebase.firestore();
     const auth = firebase.auth();
@@ -21,6 +22,7 @@ const NewCollection = (props) => {
         firestore.collection("collections").add({
             combinedCollection
         })
+        props.addCollection(combinedCollection)
         props.history.push("/");
     }
     const createUI = () => {
@@ -43,6 +45,7 @@ const NewCollection = (props) => {
    
     return (
         <div className='component-container'>
+            <input type='text' name='collectionlabel' placeholder='name this collection' ref={register}></input>
             <button onClick={() => addField([...numFields, 'el'])}> add gear to the collection</button>
             <form onSubmit={handleSubmit(onSubmit)}>
                 { createUI() }
@@ -58,7 +61,7 @@ const mapStateToProps = (state) => {
   }
   
 const mapDispatchToProps = {
-    
+    addCollection
 }
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(NewCollection));
