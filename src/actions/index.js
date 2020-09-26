@@ -30,7 +30,7 @@ export const setUser = (user) => {
 export const addCollection = (collection) => {
   return {
     type: 'ADD_COLLECTION',
-    addCollection : [...addCollection, collection]
+    addCollection : {...addCollection, collection}
   }
 }
 
