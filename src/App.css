@@ -1,6 +1,6 @@
 .master-container{
-  background: rgb(180,187,189);
-  background: radial-gradient(circle, rgba(180,187,189,1) 16%, rgba(30,185,193,0.165703781512605) 100%);
+  background: #4BDCD6;
+  background: linear-gradient(to bottom right, #4BDCD6, #F9FEC8);
   min-height: 100vh;
 }
 
@@ -25,6 +25,7 @@
   align-items: center; 
   width: 500px;
   height: 500px;
+  color: #fff;
   background-color: cornflowerblue;
   border-radius: 10%;
   box-shadow: 10px 10px 44px 0px rgba(0,0,0,0.75);
@@ -39,24 +40,24 @@
 
 .header{
   text-align: center;
+  height: 80px;
   width: 100%;
   position: fixed;        
   background: #333;
-  padding: 10px 0;
   color: #fff;
 }
 
 .dash-button-bar{
   width: 100%;
-  padding-top: 100px;
+  padding-top: 10px;
   text-align: center;
-  height: 200px;
+  height: 140px;
   background-color: darkkhaki;
 }
 
 .dash-buttons{
   margin: 10px;
-  margin-top: 80px;
+  margin-top: 85px;
   padding: 10px;
   box-shadow: 5px 4px 14px 0px rgba(0,0,0,0.75);
 

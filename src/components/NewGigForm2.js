@@ -76,20 +76,22 @@ class NewGigForm2 extends Component  {
   render() {
     
     return (
-      <div className='component-container'>
-                <button onClick={this.handleGearFields}> add gear </button>
-                <button onClick={this.handleCollectionFields}> add a collection </button>
+      <div className='master-container'>
+        <div className='component-container'>
+                  <button onClick={this.handleGearFields}> add gear </button>
+                  <button onClick={this.handleCollectionFields}> add a collection </button>
 
-            <form>
-                {/* <label>Add from your Collections?</label>
-                <select name='user-collections'>
-                    { this.componentDidMount() }
-                </select> */}
-                { this.createCollectionField() }
-                { this.createGearField() }
-                <input type="submit" />
-            </form>
-        </div>
+              <form>
+                  {/* <label>Add from your Collections?</label>
+                  <select name='user-collections'>
+                      { this.componentDidMount() }
+                  </select> */}
+                  { this.createCollectionField() }
+                  { this.createGearField() }
+                  <input type="submit" />
+              </form>
+          </div>
+      </div>
     );
   }
 }

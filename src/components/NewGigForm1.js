@@ -15,14 +15,17 @@ const NewGigForm1 = (props) => {
   }
 
   return (
-    <div className='component-container'>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <input type='date'name="date" ref={register({ required: true })} />
-        <input type='time'name="time" ref={register({ required: true })} />
-        <input name="description" placeholder="Gig Description" ref={register({required: true })} />
-        {errors.exampleRequired && <span>This field is required</span>}      
-        <input type="submit" />
-      </form>
+    <div className='master-container'>
+      <div className='component-container'>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <input type='date'name="date" ref={register({ required: true })} />
+          <input type='time'name="time" ref={register({ required: true })} />
+          <input name="description" placeholder="Gig Description" ref={register({required: true })} />
+          {errors.exampleRequired && <span>This field is required</span>}      
+          <input type="submit" />
+        </form>
+      </div>
+
     </div>
   );
 }
