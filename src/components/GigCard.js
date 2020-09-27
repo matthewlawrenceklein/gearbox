@@ -4,9 +4,9 @@ class GigCard extends Component {
     render() {
         return (
             <div className='gig-card'>
-                <h3>{this.props.date}</h3>
-                <h3>{this.props.time}</h3>
-                <h3>{this.props.description}</h3>
+                <p>{this.props.location}</p>
+                <p>{this.props.description}</p>
+                <p>{this.props.date} // {this.props.time}</p>
             </div>
         );
     }

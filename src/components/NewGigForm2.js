@@ -60,9 +60,9 @@ class NewGigForm2 extends Component  {
     const numFields = this.state.gearFields
     return numFields.map((el, idx) =>{
        return (
-            <div key={idx}>
-                <input type='text' name={`gear-text-${idx}`} onChange={ this.handleGearTextChange } placeholder='add gear'></input>
-                <select name={`gear-category-${idx}`} id={idx}onChange={ this.handleGearDropdownChange }>
+            <div key={idx} className='form-item'>
+                <input type='text' name={`gear-text-${idx}`} onChange={ this.handleGearTextChange } placeholder='add gear'className='form-item'></input>
+                <select name={`gear-category-${idx}`} id={idx}onChange={ this.handleGearDropdownChange }className='form-item'>
                     <option> None </option>
                     <option> Instrument </option>
                     <option> Amplifier  </option>
@@ -80,7 +80,7 @@ class NewGigForm2 extends Component  {
    const collectionFields = this.state.collectionFields
    return collectionFields.map((el, idx) => {
      return (
-      <select name={`user-collection-${idx}`} key={idx} onChange={this.handleCollectionChange}>
+      <select name={`user-collection-${idx}`} key={idx} onChange={this.handleCollectionChange} className='form-item'>
         <option> None </option>
        { this.componentDidMount() }
       </select>  
@@ -102,15 +102,15 @@ handleFormSubmit = (e) => {
   render() {
     
     return (
-      <div className='master-container'>
-        <div className='component-container'>
-                  <button onClick={this.handleGearFields}> add gear </button>
-                  <button onClick={this.handleCollectionFields}> add a collection </button>
+      <div className='login-master'>
+        <div className='form-container'>
+                  <button onClick={this.handleGearFields} className='form-item'> add gear </button>
+                  <button onClick={this.handleCollectionFields} className='form-item'> add a collection </button>
 
               <form>
                   { this.createCollectionField() }
                   { this.createGearField() }
-                  <input type="submit" onClick={ this.handleFormSubmit }/>
+                  <input type="submit" onClick={ this.handleFormSubmit } className='form-item'/>
               </form>
           </div>
       </div>

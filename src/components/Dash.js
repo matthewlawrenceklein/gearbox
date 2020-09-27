@@ -17,6 +17,7 @@ class Dash extends Component {
             return <GigCard 
             date={gig.completeGigDataObj.date}
             time={gig.completeGigDataObj.time}
+            location={gig.completeGigDataObj.location}
             description={gig.completeGigDataObj.description}
             />
         })

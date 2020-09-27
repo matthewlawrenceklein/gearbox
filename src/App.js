@@ -49,11 +49,15 @@ function SignIn() {
   )
 }
 
+function handleSignOut(props){
+  auth.signOut()
+}
+
 function Header() {
   return auth.currentUser && (
     <div className='header'>
       <h3>gearbox</h3>
-      <button className="sign-out" onClick={() => auth.signOut()}>Sign Out</button>
+      <button className="sign-out" onClick={() => handleSignOut() }>Sign Out</button>
     </div>
   )
 }
@@ -100,13 +104,26 @@ const App = (props) => {
               <Dash /> 
               <GetGigs />
             </div>
-            : 
-            <SignIn />}
+            :
+            <div>
+              <Header/>
+              <SignIn />
+            </div>
+              }
           </section>
         </Route>
-        <Route path='/newgigform1' component={NewGigForm1}/>
-        <Route path='/newgigform2' component={NewGigForm2}/>
-        <Route path='/newcollection' component={NewCollection}/>
+        <Route path='/newgigform1'>
+              <Header/>
+              <NewGigForm1/>
+        </Route>
+        <Route path='/newgigform2'>
+              <Header/>
+              <NewGigForm2/>
+        </Route> 
+        <Route path='/newcollection'>
+              <Header/>
+              <NewCollection/>
+        </Route> 
       </Switch>
     </div>
   );
