@@ -29,8 +29,8 @@ const NewCollection = (props) => {
         return numFields.map((el, idx) =>{
            return (
                 <div key={idx}>
-                    <input type='text' name={`collection-item-${idx}`}ref={register}></input>
-                    <select ref={register} name={`select-${idx}`}>
+                    <input type='text' name={`collection-item-${idx}`}ref={register}className='form-item'></input>
+                    <select ref={register} name={`select-${idx}`}className='form-item'>
                         <option> Instrument </option>
                         <option> Amplifier  </option>
                         <option> Pedal  </option>
@@ -44,13 +44,15 @@ const NewCollection = (props) => {
      }
    
     return (
-        <div className='component-container'>
-            <input type='text' name='collectionlabel' placeholder='name this collection' ref={register}></input>
-            <button onClick={() => addField([...numFields, 'el'])}> add gear to the collection</button>
-            <form onSubmit={handleSubmit(onSubmit)}>
-                { createUI() }
-                <button type='submit'>create collection</button>
-            </form>
+        <div className='login-master'>
+            <div className='form-container'>
+                <input type='text' name='collectionlabel' placeholder='name this collection' ref={register} className='form-item'></input>
+                <button onClick={() => addField([...numFields, 'el'])}className='form-item'> add gear to the collection</button>
+                <form onSubmit={handleSubmit(onSubmit)}>
+                    { createUI() }
+                    <button type='submit' className='form-item'>create collection</button>
+                </form>
+            </div>
         </div>
     );
 }

@@ -67,6 +67,18 @@
   margin-top: 85px;
   padding: 10px;
   box-shadow: 5px 4px 14px 0px rgba(0,0,0,0.75);
+  background: transparent;
+  color: #fff;
+  border-style: solid;
+  border-color: #fff;
+  border-radius: 20px;
+}
+
+.dash-buttons:hover{
+  border-color: greenyellow;
+  transition: .3s;
+  background-color: #333;
+  ;
 }
 
 .form-container{
