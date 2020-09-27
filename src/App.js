@@ -37,15 +37,22 @@ function SignIn() {
     auth.signInWithPopup(provider);
   }
   return (
-    <div className='component-container'>
-      <button className="sign-in" onClick={signInWithGoogle}>Sign in with Google</button>
+    <div className='login-master'>
+      <div className='login-container'>
+        <section className='login-items'>
+          <h2>Gearbox - Your Music Gear Checklist</h2>
+          <button className="sign-in" onClick={signInWithGoogle}>Sign in with Google</button>
+        </section>
+    </div>
+
     </div>
   )
 }
 
-function SignOut() {
+function Header() {
   return auth.currentUser && (
-    <div className=''>
+    <div className='header'>
+      <h3>gearbox</h3>
       <button className="sign-out" onClick={() => auth.signOut()}>Sign Out</button>
     </div>
   )
@@ -83,13 +90,13 @@ const App = (props) => {
 }
 
   return (
-    <div className="container">
+    <div className="master-container">
       <Switch>
         <Route exact path='/'>
           <section>
             {user ? 
             <div>
-              <SignOut />
+              <Header />
               <Dash /> 
               <GetGigs />
             </div>

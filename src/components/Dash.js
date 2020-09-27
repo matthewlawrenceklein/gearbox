@@ -39,14 +39,18 @@ class Dash extends Component {
 
     render(){
        return (
-           <div className='component-container'>
-               <button onClick={() => this.props.history.push("./newgigform1")}>add a new gig</button>
-               <button onClick={() => this.props.history.push("./newcollection")}>create a gear collection</button>
-               <br></br>
-               <div>
-                { this.renderGigs() }
-                { this.renderCollections() }
+           <div className='master-container'>
+               <div className='dash-button-bar'>
+                    <button className='dash-buttons' onClick={() => this.props.history.push("./newgigform1")}>add a new gig</button>
+                    <button className='dash-buttons' onClick={() => this.props.history.push("./newcollection")}>create a gear collection</button>
                </div>
+            <div className='component-container'>
+                <br></br>
+                <div>
+                    { this.renderGigs() }
+                    { this.renderCollections() }
+                </div>
+            </div>
            </div>
        );
    }

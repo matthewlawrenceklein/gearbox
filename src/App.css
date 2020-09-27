@@ -1,15 +1,33 @@
-.container{
+.master-container{
+  background: rgb(180,187,189);
+  background: radial-gradient(circle, rgba(180,187,189,1) 16%, rgba(30,185,193,0.165703781512605) 100%);
+  min-height: 100vh;
+}
+
+.component-container {
   display: flex;
   justify-content: center; 
   align-items: center; 
 }
 
-.component-container {
-  margin-top: 300px;
+.login-master{
   display: flex;
   justify-content: center; 
   align-items: center; 
-  /* min-height: 100vh; */
+  min-height: 100vh;
+
+}
+
+.login-container{
+  display: flex;
+  text-align: center;
+  justify-content: center; 
+  align-items: center; 
+  width: 500px;
+  height: 500px;
+  background-color: cornflowerblue;
+  border-radius: 10%;
+  box-shadow: 10px 10px 44px 0px rgba(0,0,0,0.75);
 }
 
 .gig-card{
@@ -17,4 +35,29 @@
   height: 200px;
   border-style: solid;
   margin: 10px;
+}
+
+.header{
+  text-align: center;
+  width: 100%;
+  position: fixed;        
+  background: #333;
+  padding: 10px 0;
+  color: #fff;
+}
+
+.dash-button-bar{
+  width: 100%;
+  padding-top: 100px;
+  text-align: center;
+  height: 200px;
+  background-color: darkkhaki;
+}
+
+.dash-buttons{
+  margin: 10px;
+  margin-top: 80px;
+  padding: 10px;
+  box-shadow: 5px 4px 14px 0px rgba(0,0,0,0.75);
+
 }
