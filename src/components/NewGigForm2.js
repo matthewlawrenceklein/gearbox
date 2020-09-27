@@ -12,9 +12,10 @@ class NewGigForm2 extends Component  {
 
   state = {
     gearFields : ['el'],
-    collectionFields : []
+    collectionFields : [],
+    gear : {},
+    collections : []
   }
- 
  
   componentDidMount(){
       return this.props.userCollections.map((collection, idx) =>{
@@ -25,6 +26,27 @@ class NewGigForm2 extends Component  {
   handleGearFields = () => {
     this.setState({
       gearFields : [...this.state.gearFields, 'el']
+    })
+  }
+
+  handleGearDropdownChange = (e) => {
+    const key = `gear-text-${e.target.id}-category`
+    const newGearObj = Object.assign(this.state.gear, { [key] : e.target.value})
+    this.setState({
+      gear : newGearObj
+    })
+  }
+
+  handleGearTextChange = (e) => {
+    const newGearTextObj = Object.assign(this.state.gear, { [e.target.name] : e.target.value })
+    this.setState({
+      gear : newGearTextObj
+    })
+  }
+
+  handleCollectionChange = (e) => {
+    this.setState({
+      collections : [...this.state.collections, e.target.value ]
     })
   }
 
@@ -39,8 +61,9 @@ class NewGigForm2 extends Component  {
     return numFields.map((el, idx) =>{
        return (
             <div key={idx}>
-                <input type='text' name={`collection-item-${idx}`}></input>
-                <select name={`select-${idx}`}>
+                <input type='text' name={`gear-text-${idx}`} onChange={ this.handleGearTextChange } placeholder='add gear'></input>
+                <select name={`gear-category-${idx}`} id={idx}onChange={ this.handleGearDropdownChange }>
+                    <option> None </option>
                     <option> Instrument </option>
                     <option> Amplifier  </option>
                     <option> Pedal  </option>
@@ -57,22 +80,25 @@ class NewGigForm2 extends Component  {
    const collectionFields = this.state.collectionFields
    return collectionFields.map((el, idx) => {
      return (
-      <select name='user-collections' key={idx}>
+      <select name={`user-collection-${idx}`} key={idx} onChange={this.handleCollectionChange}>
+        <option> None </option>
        { this.componentDidMount() }
       </select>  
      )
    })
 }
 
-  // onSubmit = data => {
-  //   const firestore = firebase.firestore();
-  //   const combinedGigObj = Object.assign(data, this.props.gigData, {user : this.props.user.email} )
-  //   firestore.collection("gigs").add({
-  //     combinedGigObj
-  //   })
-  //   this.props.history.push("/");
-  // }
-  
+handleFormSubmit = (e) => {
+  e.preventDefault()
+  const firestore = firebase.firestore();
+  const completeGigDataObj = Object.assign(this.state.gear, this.state.collections, this.props.gigData, {user : this.props.user.email})
+  console.log(completeGigDataObj)
+  firestore.collection("gigs").add({
+    completeGigDataObj
+  })
+  this.props.history.push("/");  
+}
+
   render() {
     
     return (
@@ -82,13 +108,9 @@ class NewGigForm2 extends Component  {
                   <button onClick={this.handleCollectionFields}> add a collection </button>
 
               <form>
-                  {/* <label>Add from your Collections?</label>
-                  <select name='user-collections'>
-                      { this.componentDidMount() }
-                  </select> */}
                   { this.createCollectionField() }
                   { this.createGearField() }
-                  <input type="submit" />
+                  <input type="submit" onClick={ this.handleFormSubmit }/>
               </form>
           </div>
       </div>
@@ -99,7 +121,8 @@ class NewGigForm2 extends Component  {
 const mapStateToProps = (state) => {
   return {
       gigData: state.newGigFirstData,
-      userCollections : state.setCollections
+      userCollections : state.setCollections,
+      user : state.setUser
   } 
 }
   

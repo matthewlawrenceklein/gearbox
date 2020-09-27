@@ -15,9 +15,9 @@ class Dash extends Component {
     renderGigs = () => {
         return this.props.gigs.map(gig => {
             return <GigCard 
-            date={gig.combinedGigObj.date}
-            time={gig.combinedGigObj.time}
-            description={gig.combinedGigObj.description}
+            date={gig.completeGigDataObj.date}
+            time={gig.completeGigDataObj.time}
+            description={gig.completeGigDataObj.description}
             />
         })
     }

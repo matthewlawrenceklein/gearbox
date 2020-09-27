@@ -67,7 +67,7 @@ const App = (props) => {
     const userGigs = []
     const userCollections = []
 
-    firestore.collection("gigs").where('combinedGigObj.user', '==', user.email)
+    firestore.collection("gigs").where('completeGigDataObj.user', '==', user.email)
     .get()
     .then(querySnapshot => {
         querySnapshot.forEach(doc => {
