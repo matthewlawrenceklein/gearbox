@@ -11,14 +11,31 @@ import "firebase/firestore";
 
 
 class Dash extends Component {
+
+    state = {
+        selectedGig : {},
+        showingGig : false 
+    }
+
+    renderFullGig = (fullGig) => {
+        console.log(fullGig)
+        this.setState({
+            selectedGig: fullGig,
+            showingGig : true 
+        })        
+    }
     
     renderGigs = () => {
-        return this.props.gigs.map(gig => {
+        return this.props.gigs.map((gig, idx) => {
+            const { date, time, location, description} = gig.completeGigDataObj
             return <GigCard 
-            date={gig.completeGigDataObj.date}
-            time={gig.completeGigDataObj.time}
-            location={gig.completeGigDataObj.location}
-            description={gig.completeGigDataObj.description}
+            key={idx}
+            date={date}
+            time={time}
+            location={location}
+            description={description}
+            fullGigObj={gig.completeGigDataObj}
+            renderFullGig={this.renderFullGig}
             />
         })
     }
@@ -39,6 +56,7 @@ class Dash extends Component {
     }
 
     render(){
+        const { location, description, date, time } = this.state.selectedGig 
        return (
            <div className='master-container'>
                <div className='dash-button-bar'>
@@ -50,6 +68,25 @@ class Dash extends Component {
                 <div>
                     { this.renderGigs() }
                     { this.renderCollections() }
+                </div>
+                <div className='gig-details-panel'>
+                    { this.state.showingGig ? 
+                        <div className='gig-details-item'>
+                            <h2> { location } </h2>
+                            <h2> { description } </h2>
+                            <h4> { date } -- { time } </h4>
+                            <h4> { this.state.selectedGig.geartext0 } -- { this.state.selectedGig.geartext0category }<input type='checkbox'></input> </h4>
+                            <h4> { this.state.selectedGig.geartext1 } -- { this.state.selectedGig.geartext1category }<input type='checkbox'></input> </h4>
+                            <h4> { this.state.selectedGig.geartext2 } -- { this.state.selectedGig.geartext2category }<input type='checkbox'></input> </h4>
+                            <h4> { this.state.selectedGig.geartext3 } -- { this.state.selectedGig.geartext3category }<input type='checkbox'></input> </h4>
+                            <h4> { this.state.selectedGig.geartext4 } -- { this.state.selectedGig.geartext4category }<input type='checkbox'></input> </h4>
+                            <h4> { this.state.selectedGig.geartext5 } -- { this.state.selectedGig.geartext5category }<input type='checkbox'></input> </h4>
+                        </div>
+                        :
+                        <div className='gig-details-panel'>
+                            <h2>Click a Gig to Show Details </h2>
+                        </div>
+                    }
                 </div>
             </div>
            </div>

@@ -10,6 +10,7 @@ import { Route, Switch, withRouter } from "react-router-dom";
 import NewGigForm1 from './components/NewGigForm1'
 import NewGigForm2 from './components/NewGigForm2'
 import NewCollection from './components/NewCollection'
+import Footer from './components/Footer'
 import { connect } from "react-redux";
 import { setUser } from './actions/index'
 import { setGigs } from './actions/index'
@@ -103,6 +104,7 @@ const App = (props) => {
               <Header />
               <Dash /> 
               <GetGigs />
+              <Footer />
             </div>
             :
             <div>

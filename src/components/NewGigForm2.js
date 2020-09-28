@@ -30,7 +30,7 @@ class NewGigForm2 extends Component  {
   }
 
   handleGearDropdownChange = (e) => {
-    const key = `gear-text-${e.target.id}-category`
+    const key = `geartext${e.target.id}category`
     const newGearObj = Object.assign(this.state.gear, { [key] : e.target.value})
     this.setState({
       gear : newGearObj
@@ -61,8 +61,8 @@ class NewGigForm2 extends Component  {
     return numFields.map((el, idx) =>{
        return (
             <div key={idx} className='form-item'>
-                <input type='text' name={`gear-text-${idx}`} onChange={ this.handleGearTextChange } placeholder='add gear'className='form-item'></input>
-                <select name={`gear-category-${idx}`} id={idx}onChange={ this.handleGearDropdownChange }className='form-item'>
+                <input type='text' name={`geartext${idx}`} onChange={ this.handleGearTextChange } placeholder='add gear'className='form-item'></input>
+                <select name={`gearcategory${idx}`} id={idx}onChange={ this.handleGearDropdownChange }className='form-item'>
                     <option> None </option>
                     <option> Instrument </option>
                     <option> Amplifier  </option>
@@ -80,7 +80,7 @@ class NewGigForm2 extends Component  {
    const collectionFields = this.state.collectionFields
    return collectionFields.map((el, idx) => {
      return (
-      <select name={`user-collection-${idx}`} key={idx} onChange={this.handleCollectionChange} className='form-item'>
+      <select name={`usercollection${idx}`} key={idx} onChange={this.handleCollectionChange} className='form-item'>
         <option> None </option>
        { this.componentDidMount() }
       </select>  
