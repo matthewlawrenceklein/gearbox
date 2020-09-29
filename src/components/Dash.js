@@ -79,8 +79,8 @@ class Dash extends Component {
                             <h4> { this.state.selectedGig.geartext1 } -- { this.state.selectedGig.geartext1category }<input type='checkbox'></input> </h4>
                             <h4> { this.state.selectedGig.geartext2 } -- { this.state.selectedGig.geartext2category }<input type='checkbox'></input> </h4>
                             <h4> { this.state.selectedGig.geartext3 } -- { this.state.selectedGig.geartext3category }<input type='checkbox'></input> </h4>
-                            <h4> { this.state.selectedGig.geartext4 } -- { this.state.selectedGig.geartext4category }<input type='checkbox'></input> </h4>
-                            <h4> { this.state.selectedGig.geartext5 } -- { this.state.selectedGig.geartext5category }<input type='checkbox'></input> </h4>
+                            {/* <h4> { this.state.selectedGig.geartext4 } -- { this.state.selectedGig.geartext4category }<input type='checkbox'></input> </h4>
+                            <h4> { this.state.selectedGig.geartext5 } -- { this.state.selectedGig.geartext5category }<input type='checkbox'></input> </h4> */}
                         </div>
                         :
                         <div className='gig-details-panel'>

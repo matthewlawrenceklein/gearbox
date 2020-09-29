@@ -15,6 +15,12 @@ import { connect } from "react-redux";
 import { setUser } from './actions/index'
 import { setGigs } from './actions/index'
 import { setCollections } from './actions/index'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCog } from '@fortawesome/free-solid-svg-icons'
+import { faBoxOpen } from '@fortawesome/free-solid-svg-icons'
+import { faGoogle } from '@fortawesome/free-brands-svg-icons'
+import { Link } from 'react-router-dom'
+
 
 const firebaseConfig = {
   apiKey: `${process.env.REACT_APP_FIREBASE_KEY}`,
@@ -41,8 +47,11 @@ function SignIn() {
     <div className='login-master'>
       <div className='login-container'>
         <section className='login-items'>
+          <FontAwesomeIcon icon={faCog} className='fa-icon'/>
+          <FontAwesomeIcon icon={faBoxOpen} className='fa-icon'/>
           <h2>Gearbox - Your Music Gear Checklist</h2>
-          <button className="sign-in" onClick={signInWithGoogle}>Sign in with Google</button>
+          <FontAwesomeIcon icon={faGoogle} className='fa-icon-login' onClick={signInWithGoogle}/>
+
         </section>
     </div>
 
@@ -57,8 +66,14 @@ function handleSignOut(props){
 function Header() {
   return auth.currentUser && (
     <div className='header'>
-      <h3>gearbox</h3>
-      <button className="sign-out" onClick={() => handleSignOut() }>Sign Out</button>
+      <Link to='/'>
+        <FontAwesomeIcon icon={faCog} className='fa-icon'/>
+        <FontAwesomeIcon icon={faBoxOpen} className='fa-icon'/>
+      </Link>
+      {/* <h3>gearbox</h3> */}
+      <div className='right-align-header'>
+        <button className="sign-out" onClick={() => handleSignOut() }>Sign Out</button>
+      </div>
     </div>
   )
 }
@@ -117,14 +132,17 @@ const App = (props) => {
         <Route path='/newgigform1'>
               <Header/>
               <NewGigForm1/>
+              <Footer />
         </Route>
         <Route path='/newgigform2'>
               <Header/>
               <NewGigForm2/>
+              <Footer />
         </Route> 
         <Route path='/newcollection'>
               <Header/>
               <NewCollection/>
+              <Footer />
         </Route> 
       </Switch>
     </div>

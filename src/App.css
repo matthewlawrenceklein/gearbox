@@ -153,3 +153,41 @@
   color: lightcyan;
   transition: .3s;
 }
+
+.fa-icon{
+  font-size: 40px;
+  padding: 15px;
+  color: #fff;
+}
+
+.fa-icon:hover{
+  color: cornflowerblue;
+  transform: rotate(360deg);
+  transition: .5s;
+}
+
+.right-align-header{
+  float: right;
+  /* margin: 20px; */
+}
+
+.fa-icon-login{
+  font-size: 40px;
+  padding: 15px;
+  border-radius: 50%;
+  box-shadow: 5px 4px 14px 0px rgba(0,0,0,0.75);
+
+}
+
+.fa-icon-login:hover{
+  color: mediumturquoise;
+  transition: .4s;
+  background-image: linear-gradient(90deg, #00C0FF 0%, #FFCF00 49%, #FC4F4F 80%, #00C0FF 100%);
+  animation:slidebg 8s linear infinite;
+}
+
+@keyframes slidebg {
+  to {
+    background-position:20vw;
+  }
+}
